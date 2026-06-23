@@ -33,7 +33,7 @@
             position: relative;
         }
 
-        /* خلفية متحركة احترافية */
+       
         .bg-blobs {
             position: absolute;
             width: 100%;
@@ -66,7 +66,7 @@
             to { transform: translate(20%, 20%) rotate(360deg); }
         }
 
-        /* الكارد الرئيسي بتأثير زجاجي معزز */
+        
         .glass-card {
             background: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(25px);
@@ -111,7 +111,7 @@
             top: 0; left: 0; pointer-events: none;
         }
 
-        /* النصوص */
+       
         .name-title {
             font-family: 'Amiri', serif;
             font-size: 38px;
@@ -121,14 +121,14 @@
         }
 
         .typing-text {
-            min-height: 80px; /* لضمان عدم اهتزاز الكارد أثناء الكتابة */
+            min-height: 80px; 
             font-size: 17px;
             color: #636e72;
             line-height: 1.8;
             margin-top: 20px;
         }
 
-        /* مشغل موسيقى بسيط */
+      
         .music-player {
             position: fixed;
             bottom: 30px;
@@ -153,7 +153,7 @@
             cursor: pointer !important;
         }
 
-        /* أنميشن العناصر المتساقطة */
+       
         .particle {
             position: absolute;
             pointer-events: none;
@@ -195,7 +195,6 @@
     </div>
 
     <script>
-        // 1. تأثير الكتابة الآلية
         const text = "أنتِ لستِ مجرد شخص عابر في الحياه، أنتِ التفاصيل اللطيفة التي تجعل هذا العالم يبدو أجمل. أردتُ أن أهديكِ مكاناً يشبه هدوء روحكِ وجمال ضحكتكِ.. دمتِ شيئاً جميلاً لا ينتهي. 🌸";
         let i = 0;
         function typeWriter() {
@@ -206,10 +205,8 @@
             }
         }
 
-        // 2. تشغيل الكتابة عند فتح الصفحة
         window.onload = typeWriter;
 
-        // 3. مشغل الموسيقى
         const audio = document.getElementById("bgAudio");
         const btn = document.getElementById("musicToggle");
         btn.onclick = function() {
@@ -222,7 +219,6 @@
             }
         };
 
-        // 4. توليد العناصر المتساقطة (ورود ونجوم)
         function createParticle() {
             const icons = ['🌸', '✨', '💖', '⭐', '☁️'];
             const p = document.createElement('div');
@@ -237,9 +233,8 @@
         }
         setInterval(createParticle, 500);
 
-        // 5. حماية إضافية
         document.onkeydown = function(e) {
-            // منع Ctrl+U, Ctrl+S, Ctrl+Shift+I
+
             if (e.ctrlKey && (e.keyCode === 85 || e.keyCode === 83 || (e.shiftKey && e.keyCode === 73))) {
                 return false;
             }
