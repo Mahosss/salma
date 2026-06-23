@@ -80,14 +80,13 @@
             position: relative;
         }
 
-        /* حماية الصورة وتنسيقها مع التأثير الجديد البسيط */
         .profile-section {
             position: relative;
             width: 160px;
             height: 160px;
             margin: 0 auto 35px;
             border-radius: 50%;
-            /* الإطار المضيء المتدرج */
+
             padding: 5px;
             background: linear-gradient(45deg, #00f2fe, #4facfe, var(--secondary-color), var(--primary-color));
             background-size: 300% 300%;
@@ -96,7 +95,6 @@
             box-shadow: 0 0 20px rgba(79, 172, 254, 0.4), 0 0 40px rgba(253, 121, 168, 0.2);
         }
 
-        /* أنميشن التفاف ألوان الإطار بسلاسة */
         @keyframes gradientBorder {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
@@ -108,7 +106,7 @@
             height: 100%;
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid #fff; /* فاصل أبيض ناعم بين الصورة والإطار المضيء */
+            border: 4px solid #fff; /
             pointer-events: none;
             display: block;
         }
@@ -207,7 +205,7 @@
     </div>
 
     <script>
-        const text = "أنتِ لستِ مجرد شخص عابر في الحياه، أنتِ التفاصيل اللطيفة التي تجعل هذا العالم يبدو أجمل. أردتُ أن أهديكِ مكاناً يشبه هدوء روحكِ وجمال ضحكتكِ.. دمتِ شيئاً جميلاً لا ينتهي. 🌸";
+        const text = "أنتِ لستِ مجرد شخص عابر في الحياه، أنتِ التفاصيل اللطيفة التي تجعل هذا العالم يبدو أجمل. لا يشئ يشبه هدوء روحكِ وجمال ضحكتكِ.. دمتِ شيئاً جميلاً لا ينتهي. 🌸";
         let i = 0;
         function typeWriter() {
             if (i < text.length) {
