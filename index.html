@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>eve</title>
+    <title>مساحة خاصة لأجمل بنت ✨</title>
     <style>
         /* إعدادات الخطوط والخلفية العامة */
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&family=Reem+Kufi:wght@500&display=swap');
@@ -12,6 +12,9 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            /* منع تحديد النصوص في الصفحة بشكل عام لزيادة الحماية والاستايل الجمالي */
+            user-select: none;
+            -webkit-user-select: none;
         }
 
         body {
@@ -22,22 +25,25 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow-x: hidden;
+            overflow: hidden; /* لمنع ظهور شريط التمرير أثناء تساقط الورود */
             padding: 20px;
+            position: relative;
         }
 
         /* الحاوية الرئيسية للكارد */
         .card-container {
             background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border-radius: 24px;
-            padding: 40px 30px;
+            padding: 45px 30px;
             width: 100%;
             max-width: 450px;
             text-align: center;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
             border: 2px solid rgba(255, 255, 255, 0.5);
             position: relative;
+            z-index: 10; /* ليكون فوق الخلفية المتساقطة */
             transform: translateY(0);
             transition: all 0.4s ease;
         }
@@ -47,12 +53,12 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
 
-        /* إطار الصورة الشخصية والديكور حولها */
+        /* إطار الصورة الشخصية والحماية */
         .profile-wrapper {
             position: relative;
-            width: 130px;
-            height: 130px;
-            margin: 0 auto 25px;
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 30px;
         }
 
         .profile-img {
@@ -62,24 +68,41 @@
             object-fit: cover;
             border: 4px solid #fff;
             box-shadow: 0 8px 20px rgba(165, 94, 234, 0.3);
+            /* منع السحب والنسخ للمتصفحات */
+            pointer-events: none; 
+            -webkit-touch-callout: none;
         }
 
-        /* تأثير النجوم اللامعة حول الصورة */
+        /* طبقة شفافة غير مرئية فوق الصورة تماماً لمنع الكليك يمين والتفتيش */
+        .img-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            z-index: 5;
+            background: transparent;
+        }
+
+        /* تأثير النجوم والقلوب اللامعة حول الصورة */
         .sparkle {
             position: absolute;
-            font-size: 20px;
+            font-size: 22px;
+            z-index: 6;
             animation: blink 2s infinite ease-in-out;
         }
         .sp-1 { top: -10px; left: -10px; animation-delay: 0s; }
         .sp-2 { bottom: 10px; right: -15px; animation-delay: 0.5s; }
-        .sp-3 { top: 50%; left: -20px; animation-delay: 1s; }
+        .sp-3 { top: 50%; left: -25px; animation-delay: 1s; }
 
         /* النصوص والأسماء */
         .title {
             font-family: 'Reem Kufi', sans-serif;
-            font-size: 28px;
+            font-size: 30px;
             color: #4b3080;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
         }
 
         .subtitle {
@@ -91,107 +114,99 @@
 
         /* قسم الرسالة المكتوبة داخل ورق مطوي */
         .message-box {
-            background: #fff;
-            border-left: 4px solid #a55eea;
+            background: rgba(255, 255, 255, 0.9);
+            border-right: 4px solid #a55eea; /* تم التعديل لليمين ليتناسب مع الاتجاه العربي */
             border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 30px;
+            padding: 22px;
             text-align: right;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.02);
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.01), 0 4px 12px rgba(0,0,0,0.03);
         }
 
         .message-box p {
-            font-size: 15px;
+            font-size: 15.5px;
             color: #4b5563;
-            line-height: 1.8;
+            line-height: 1.9;
         }
 
-        /* أزرار التفاعل أو الروابط */
-        .action-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            background: linear-gradient(90deg, #a55eea, #ff7675);
-            color: #fff;
-            text-decoration: none;
-            padding: 12px 30px;
-            border-radius: 50px;
-            font-weight: bold;
-            font-size: 16px;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(165, 94, 234, 0.4);
-            transition: all 0.3s ease;
-            width: 100%;
-        }
-
-        .action-btn:hover {
-            opacity: 0.9;
-            box-shadow: 0 8px 20px rgba(165, 94, 234, 0.6);
-            transform: scale(1.02);
-        }
-
-        /* الأنميشن الخاص باللمعان */
+        /* الأنميشن الخاص باللمعان حول الصورة */
         @keyframes blink {
             0%, 100% { transform: scale(0.8); opacity: 0.5; }
             50% { transform: scale(1.2); opacity: 1; filter: drop-shadow(0 0 5px #fbc531); }
         }
 
-        /* قلوب متساقطة في الخلفية لخلق جو لطيف */
+        /* عناصر متساقطة تلقائياً في الخلفية */
         .heart-fall {
             position: absolute;
-            color: rgba(255, 255, 255, 0.3);
-            font-size: 24px;
+            color: rgba(255, 255, 255, 0.4);
             pointer-events: none;
-            animation: fall 6s linear infinite;
+            z-index: 1;
+            animation: fall linear forwards;
         }
 
         @keyframes fall {
-            0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
         }
     </style>
 </head>
 <body>
 
-    <div class="card-container">
+    <!-- كارد الصفحة الرئيسي -->
+    <div class="card-container" oncontextmenu="return false;">
         <div class="profile-wrapper">
             <span class="sparkle sp-1">✨</span>
             <span class="sparkle sp-2">💖</span>
-            <span class="sparkle sp-3">⭐</span>
-            <img src="https://img.alfrsantv.com/img/f178217965009281.png" alt="Profile Image" class="profile-img">
+            <span class="sparkle sp-3">🌸</span>
+            
+            <!-- طبقة الحماية الشفافة فوق الصورة -->
+            <div class="img-overlay"></div>
+            
+            <!-- استبدل الرابط أدناه برابط صورتها الشخصية -->
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500" alt="Profile" class="profile-img" oncontextmenu="return false;" dragstart="return false;" ondragstart="return false;">
         </div>
 
-        <h1 class="title">Eve</h1>
-        <p class="subtitle">كل التفاصيل اللطيفة تليق بكِ، كل الاشياء الجميلة صنعت لأجلكِ فقط.</p>
+        <h1 class="title">إلى الجميلة أسماء ✨</h1>
+        <p class="subtitle">كل التفاصيل اللطيفة تليق بكِ، هُنا مساحة صنعت لأجلكِ فقط.</p>
 
         <div class="message-box">
             <p>
                 اليوم حبيت أعملك حاجة مختلفة وشبهك.. مكان هادي فيه كلام طالع من القلب. ربنا يخليكي ليا وميحرمنيش من ضحكتك اللي بتنور الدنيا دايماً. 🌸
             </p>
         </div>
-
-        <button class="action-btn" onclick="celebrate()">اضغطي هنا لو سمحتِ 🪄</button>
     </div>
 
+    <!-- جافا سكريبت لمنع الكليك يمين على الصفحة وتوليد الأنميشن التلقائي -->
     <script>
-        function celebrate() {
-            for (let i = 0; i < 15; i++) {
-                setTimeout(() => {
-                    const heart = document.createElement('div');
-                    heart.classList.add('heart-fall');
-                    heart.innerHTML = ['🌸', '✨', '💖', '⭐'][Math.floor(Math.random() * 4)];
-                    heart.style.left = Math.random() * 100 + 'vw';
-                    heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
-                    heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
-                    document.body.appendChild(heart);
-                    
-                    // إزالة العنصر بعد انتهاء الأنميشن
-                    setTimeout(() => { heart.remove(); }, 6000);
-                }, i * 200);
+        // 1. منع الكليك يمين تماماً على الكارد والصورة لحمايتها
+        document.addEventListener('contextmenu', function(e) {
+            if (e.target.classList.contains('profile-img') || e.target.classList.contains('img-overlay')) {
+                e.preventDefault();
             }
+        });
+
+        // 2. دالة توليد تأثير التساقط التلقائي في الخلفية بدون الحاجة لزر
+        function autoCelebrate() {
+            const icons = ['🌸', '✨', '💖', '⭐', '🎈'];
+            const heart = document.createElement('div');
+            heart.classList.add('heart-fall');
+            heart.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+            
+            heart.style.left = Math.random() * 100 + 'vw';
+            const duration = Math.random() * 4 + 4; // سرعة التساقط بين 4 إلى 8 ثواني
+            heart.style.animationDuration = duration + 's';
+            heart.style.fontSize = (Math.random() * 20 + 12) + 'px'; // أحجام عشوائية ناعمة
+            
+            document.body.appendChild(heart);
+            
+            // إزالة العنصر بعد انتهاء الأنميشن تلقائياً للحفاظ على أداء المتصفح
+            setTimeout(() => {
+                heart.remove();
+            }, duration * 1000);
         }
+
+        // تشغيل التساقط التلقائي بانتظام (عنصر جديد كل 400 مللي ثانية)
+        setInterval(autoCelebrate, 400);
     </script>
 </body>
 </html>
